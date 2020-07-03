@@ -13,7 +13,7 @@ pipeline{
             }
             stage('Install Docker Compose'){
                 steps{
-                    sh "curl https://github.com/docker/compose/releases/download/1.26.1/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose | sudo bash"
+                    sh "version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name') | sudo bash"
                 }
             }   
             stage('Deploy'){
